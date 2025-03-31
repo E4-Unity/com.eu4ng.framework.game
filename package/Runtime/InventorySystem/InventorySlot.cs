@@ -12,5 +12,8 @@ namespace Eu4ng.System.Inventory
         public ItemDefinition Definition;
 
         public int Quantity;
+
+        public static bool operator ==(InventorySlot inventorySlot, int index) => inventorySlot.Index == index;
+        public static bool operator !=(InventorySlot inventorySlot, int index) => !(inventorySlot == index);
     }
 }
