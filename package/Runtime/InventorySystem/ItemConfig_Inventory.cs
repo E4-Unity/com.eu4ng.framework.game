@@ -14,7 +14,7 @@ namespace Eu4ng.System.Inventory
 #if USE_E4_INVENTORY_SYSTEM
     [CreateAssetMenu(fileName = "ItemConfig_Inventory", menuName = "Scriptable Objects/ItemConfig/Inventory")]
 #endif
-    public class ItemConfig_Inventory : ItemConfig<InventoryItemConfigData>
+    public class ItemConfig_Inventory : ItemConfig<InventoryItemConfigData, ItemConfig_Inventory>
     {
 
     }

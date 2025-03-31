@@ -7,10 +7,17 @@ namespace Eu4ng.System.Item
 
     }
 
-    public abstract class ItemConfig<T> : ItemConfig where T : struct
+    public abstract class ItemConfig<TData, TItemConfig> : ItemConfig where TData : struct where TItemConfig : ItemConfig<TData, TItemConfig>
     {
-        [SerializeField] T m_Data;
+        [SerializeField] TData m_Data;
 
-        public T Data => m_Data;
+        public TData Data => m_Data;
+
+        public static void GetDataFromItemDefinition(ItemDefinition itemDefinition, out TData data)
+        {
+            data = default;
+            var itemConfig = itemDefinition.GetItemConfig<TItemConfig>();
+            if (itemConfig != null) data = itemConfig.Data;
+        }
     }
 }
