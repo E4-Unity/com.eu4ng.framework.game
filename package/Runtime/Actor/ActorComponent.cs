@@ -1,10 +1,11 @@
+using Eu4ng.Utilities;
 using UnityEngine;
 
 namespace Eu4ng.Framework.Game
 {
     public class ActorComponent : ComponentBase
     {
-        Actor m_Owner;
+        [SerializeField, ReadOnly] Actor m_Owner;
 
         public Actor Owner
         {

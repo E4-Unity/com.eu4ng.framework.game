@@ -1,3 +1,4 @@
+using Eu4ng.Utilities;
 using UnityEngine;
 
 namespace Eu4ng.Framework.Game
@@ -9,8 +10,8 @@ namespace Eu4ng.Framework.Game
         [SerializeField] Controller m_PlayerControllerPrefab;
         [SerializeField] Pawn m_PlayerPrefab;
 
-        Pawn m_Player;
-        Controller m_PlayerController;
+        [SerializeField, ReadOnly] Pawn m_Player;
+        [SerializeField, ReadOnly] Controller m_PlayerController;
 
         /* Properties */
 

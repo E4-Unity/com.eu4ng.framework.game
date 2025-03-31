@@ -1,3 +1,4 @@
+using Eu4ng.Utilities;
 using UnityEngine;
 
 namespace Eu4ng.Framework.Game
@@ -6,6 +7,7 @@ namespace Eu4ng.Framework.Game
     {
         /* Properties */
 
+        [field: SerializeField, ReadOnly]
         public Controller OwningController { get; private set; }
 
         /* MonoBehaviour */

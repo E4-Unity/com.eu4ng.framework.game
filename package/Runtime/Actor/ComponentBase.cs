@@ -1,9 +1,11 @@
+using Eu4ng.Utilities;
 using UnityEngine;
 
 namespace Eu4ng.Framework.Game
 {
     public abstract class ComponentBase : MonoBehaviour
     {
+        [field: SerializeField, ReadOnly]
         public bool IsInitialized { get; private set; }
 
         public void InitializeComponent()
