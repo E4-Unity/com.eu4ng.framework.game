@@ -20,13 +20,14 @@ namespace Eu4ng.System.Item
 
         /* ItemDefinition */
 
-        public T GetItemConfig<T>() where T : ItemConfig
+        public T GetItemConfigInterface<T>() where T : class, IItemConfig
         {
             foreach (var itemConfig in ItemConfigs)
             {
                 if (itemConfig == null) continue;
 
-                if(itemConfig.GetType() == typeof(T) || itemConfig.GetType().IsSubclassOf(typeof(T))) return (T)itemConfig;
+                var itemConfigInterface = itemConfig.GetItemConfigInterface<T>();
+                if (itemConfigInterface != null) return itemConfigInterface;
             }
 
             return null;

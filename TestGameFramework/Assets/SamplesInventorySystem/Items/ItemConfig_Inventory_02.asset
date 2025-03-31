@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ItemConfig_Inventory_02
   m_EditorClassIdentifier: 
   m_Data:
-    MaxStack: 10
+    m_MaxStack: 10
