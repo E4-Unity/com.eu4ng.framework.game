@@ -25,6 +25,7 @@ namespace Eu4ng.Framework.Game
         {
             if (pawn == null) return;
             OwningPawn = pawn;
+            OwningPawn.PossessedBy(this);
 
             OnPossess(pawn);
         }
@@ -32,6 +33,7 @@ namespace Eu4ng.Framework.Game
         public void UnPossess()
         {
             if (OwningPawn == null) return;
+            OwningPawn.UnPossessed();
             OwningPawn = null;
 
             OnUnPossess();
