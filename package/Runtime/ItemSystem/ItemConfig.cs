@@ -1,5 +1,4 @@
 using UnityEngine;
-using NotImplementedException = System.NotImplementedException;
 
 namespace Eu4ng.System.Item
 {
