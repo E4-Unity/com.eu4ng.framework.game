@@ -10,7 +10,7 @@ namespace Eu4ng.System.Inventory
     {
         [SerializeField, Min(0)] int m_MaxSlotNum = 4;
         [SerializeField] List<ItemData> m_StartItems = new List<ItemData>();
-        [SerializeField, ReadOnly] List<InventorySlot> m_InventorySlots = new List<InventorySlot>();
+        [SerializeField] List<InventorySlot> m_InventorySlots = new List<InventorySlot>();
 
         protected int MaxSlotNum => m_MaxSlotNum;
         protected List<ItemData> StartItems => m_StartItems;
