@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Eu4ng.Framework.Game
 {
-    public abstract class Actor : ComponentBase
+    public class Actor : ComponentBase
     {
         /* MonoBehaviour */
 

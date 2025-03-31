@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Eu4ng.Framework.Game
 {
-    public abstract class ActorComponent : ComponentBase
+    public class ActorComponent : ComponentBase
     {
         Actor m_Owner;
 
