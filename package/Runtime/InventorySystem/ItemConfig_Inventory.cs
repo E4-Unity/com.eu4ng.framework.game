@@ -7,14 +7,8 @@ namespace Eu4ng.System.Inventory
     [Serializable]
     public struct InventoryItemConfigData : IInventoryItemConfig
     {
-        [Min(0)]
-        [SerializeField] int m_MaxStack;
-
-        public int MaxStack
-        {
-            get => m_MaxStack;
-            set => m_MaxStack = value;
-        }
+        [field: SerializeField, Min(0)]
+        public int MaxStack { get; set; }
     }
 
     public interface IInventoryItemConfig : IItemConfig
