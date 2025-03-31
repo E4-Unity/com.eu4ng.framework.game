@@ -16,9 +16,4 @@ namespace Eu4ng.Framework.Game
             }
         }
     }
-
-    public abstract class ActorComponent<T> : ActorComponent where T : Actor
-    {
-        protected T CastedOwner => (T)Owner;
-    }
 }
