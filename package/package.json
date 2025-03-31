@@ -8,5 +8,15 @@
         "email": "eu4ng97@gmail.com",
         "url": "https://github.com/Eu4ng"
     },
-    "description": "GameFramework"
+    "description": "GameFramework",
+    "dependencies": {
+        "com.eu4ng.utilities": "https://github.com/E4-Unity/com.eu4ng.utilities.git?path=/package#v0.1.0"
+    },
+    "samples": [
+        {
+            "displayName": "InventorySystem Sample",
+            "description": "Sample assets for InventorySystem",
+            "path": "Samples~/SamplesInventorySystem"
+        }
+    ]
 }
