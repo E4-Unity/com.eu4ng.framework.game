@@ -4,7 +4,20 @@ namespace Eu4ng.Framework.Game
 {
     public class Controller : Actor
     {
+        /* Properties */
+
         public Pawn OwningPawn { get; private set; }
+
+        /* MonoBehaviour */
+
+        protected override void OnDestroy()
+        {
+            UnPossess();
+
+            base.OnDestroy();
+        }
+
+        /* Controller */
 
         public void Possess(Pawn pawn)
         {
