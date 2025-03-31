@@ -12,22 +12,11 @@ namespace Eu4ng.System.Inventory.Sample
     [Serializable]
     public struct InventoryItemConfigData : IInventoryItemConfig
     {
-        [Min(0)]
-        [SerializeField] int m_MaxStack;
+        [field: SerializeField, Min(0)]
+        public int MaxStack { get; set; }
 
-        [SerializeField] int m_TestValue;
-
-        public int MaxStack
-        {
-            get => m_MaxStack;
-            set => m_MaxStack = value;
-        }
-
-        public int TestValue
-        {
-            get => m_TestValue;
-            set => m_TestValue = value;
-        }
+        [field: SerializeField]
+        public int TestValue { get; set; }
     }
 
 #if USE_E4_INVENTORY_SYSTEM
