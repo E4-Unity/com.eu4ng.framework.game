@@ -1,7 +1,9 @@
 {
     "name": "Eu4ng.Framework.Game",
     "rootNamespace": "Eu4ng.Framework.Game",
-    "references": [],
+    "references": [
+        "GUID:6ebc61a948085e64fb3662bdc27fc9fb"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
