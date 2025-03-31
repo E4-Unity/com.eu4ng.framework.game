@@ -26,7 +26,7 @@ namespace Eu4ng.System.Item
             {
                 if (itemConfig == null) continue;
 
-                if(itemConfig.GetType().IsSubclassOf(typeof(T))) return (T)itemConfig;
+                if(itemConfig.GetType() == typeof(T) || itemConfig.GetType().IsSubclassOf(typeof(T))) return (T)itemConfig;
             }
 
             return null;
