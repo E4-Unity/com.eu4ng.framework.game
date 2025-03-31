@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Eu4ng.Framework.Game;
 using Eu4ng.System.Item;
-using Eu4ng.Utilities;
 using UnityEngine;
 
 namespace Eu4ng.System.Inventory
