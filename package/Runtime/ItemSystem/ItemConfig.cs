@@ -9,10 +9,15 @@ namespace Eu4ng.System.Item
 
     public abstract class ItemConfig<TData> : ItemConfig where TData : struct, IItemConfig
     {
-        [SerializeField] TData m_Data;
+        /* Properties */
 
-        public TData Data => m_Data;
+        [field: SerializeField]
+        public TData Data { get; protected set; }
 
-        public override T GetItemConfigInterface<T>() => m_Data as T;
+        /* ItemConfig<TData> */
+
+        public void Initialize(TData data) => Data = data;
+
+        public override T GetItemConfigInterface<T>() => Data as T;
     }
 }
