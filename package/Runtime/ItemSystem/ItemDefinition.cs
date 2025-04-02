@@ -6,19 +6,25 @@ namespace Eu4ng.System.Item
     [CreateAssetMenu(fileName = "ItemDefinition", menuName = "Scriptable Objects/ItemDefinition")]
     public class ItemDefinition : ScriptableObject
     {
-        /* Fields */
-
-        [SerializeField] int m_ID;
-        [SerializeField] string m_DisplayName;
-        [SerializeField] List<ItemConfig> m_ItemConfigs = new List<ItemConfig>();
-
         /* Properties */
 
-        public int ID => m_ID;
-        public string DisplayName => m_DisplayName;
-        protected List<ItemConfig> ItemConfigs => m_ItemConfigs;
+        [field: SerializeField]
+        public int ID { get; protected set; }
+
+        [field: SerializeField]
+        public string DisplayName { get; protected set; }
+
+        [field: SerializeField]
+        public List<ItemConfig> ItemConfigs { get; set; }
 
         /* ItemDefinition */
+
+        public void Initialize(int id, string displayName, List<ItemConfig> itemConfigs)
+        {
+            ID = id;
+            DisplayName = displayName;
+            ItemConfigs = itemConfigs;
+        }
 
         public T GetItemConfigInterface<T>() where T : class, IItemConfig
         {

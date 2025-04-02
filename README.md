@@ -8,3 +8,17 @@
 ```
 https://github.com/E4-Unity/com.eu4ng.framework.game.git?path=/package#v0.1.0
 ```
+
+## 패키지 종속성
+
+[`E4 Utilities`](https://github.com/E4-Unity/com.eu4ng.utilities)
+
+```
+https://github.com/E4-Unity/com.eu4ng.utilities.git?path=/package#v0.1.1
+```
+
+[`Singleton Manager`](https://github.com/E4-Unity/com.eu4ng.manager.singleton)
+
+```
+https://github.com/E4-Unity/com.eu4ng.manager.singleton.git?path=/package#v0.1.0
+```

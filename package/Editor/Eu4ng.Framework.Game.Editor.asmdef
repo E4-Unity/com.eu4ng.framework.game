@@ -1,0 +1,20 @@
+{
+    "name": "Eu4ng.Framework.Game.Editor",
+    "rootNamespace": "Eu4ng.Framework.Game.Editor",
+    "references": [
+        "GUID:f54fa412c9baf0b419a9af7a5648fffd",
+        "GUID:464f6c32d7dec504c97b0c85c8e110c8",
+        "GUID:97a1adbd79c277d4798dc637e4404815"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
