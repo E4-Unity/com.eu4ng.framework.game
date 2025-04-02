@@ -1,14 +1,17 @@
 using Eu4ng.Framework.Game;
+using Eu4ng.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Project.Platformer
 {
-    public class Character : Pawn
+    [RequireComponent(typeof(Rigidbody2D), typeof(CapsuleCollider2D))]
+    public class Character2D : Pawn
     {
         /* Components */
 
-        [field: SerializeField] protected Rigidbody2D RigidbodyComponent { get; private set; }
+        [field: SerializeField, ReadOnly] public Rigidbody2D RigidbodyComponent { get; private set; }
+        [field: SerializeField, ReadOnly] public CapsuleCollider2D CapsuleColliderComponent { get; private set; }
 
         /* Config */
 
@@ -31,7 +34,8 @@ namespace Project.Platformer
         {
             base.AssignReferences();
 
-            RigidbodyComponent = RigidbodyComponent != null ? RigidbodyComponent : GetComponent<Rigidbody2D>();
+            RigidbodyComponent = GetComponent<Rigidbody2D>();
+            CapsuleColliderComponent = GetComponent<CapsuleCollider2D>();
         }
 
         /* Pawn */
@@ -70,7 +74,7 @@ namespace Project.Platformer
             base.UnBindInputComponent();
         }
 
-        /* Character */
+        /* Character2D */
 
         protected virtual void OnMove(InputAction.CallbackContext context)
         {
