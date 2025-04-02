@@ -51,7 +51,7 @@ namespace Eu4ng.System.Item
             {
                 if (itemConfig == null) continue;
                 AssetDatabase.AddObjectToAsset(itemConfig, itemDefinition);
-                AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(itemConfig));
+                AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(itemConfig)); // TODO generated inconsistent result for asset
             }
         }
 
