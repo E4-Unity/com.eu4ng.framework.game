@@ -16,5 +16,22 @@ namespace Eu4ng.Framework.Game
                 m_Owner = value;
             }
         }
+
+        /* MonoBehaviour */
+
+        protected override void OnInitializeComponent()
+        {
+            base.OnInitializeComponent();
+
+            AssignReferences();
+            BindEvents();
+        }
+
+        protected override void OnDestroy()
+        {
+            UnBindEvents();
+
+            base.OnDestroy();
+        }
     }
 }

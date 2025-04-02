@@ -28,5 +28,11 @@ namespace Eu4ng.Framework.Game
         protected virtual void LateUpdate() {}
         protected virtual void OnDisable() {}
         protected virtual void OnDestroy() {}
+
+        /* ComponentBase */
+
+        protected virtual void AssignReferences() {}
+        protected virtual void BindEvents() {}
+        protected virtual void UnBindEvents() {}
     }
 }

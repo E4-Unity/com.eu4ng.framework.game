@@ -22,7 +22,7 @@ namespace Eu4ng.Framework.Game
         protected override void OnDestroy()
         {
             UnBindEvents();
-            
+
             base.OnDestroy();
         }
 
@@ -34,10 +34,6 @@ namespace Eu4ng.Framework.Game
         }
 
         /* Actor */
-
-        protected virtual void AssignReferences() {}
-        protected virtual void BindEvents() {}
-        protected virtual void UnBindEvents() {}
 
         protected virtual void InitializeActorComponents()
         {
