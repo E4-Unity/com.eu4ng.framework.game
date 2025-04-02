@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using Eu4ng.Utilities.Editor;
 using Unity.Plastic.Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
@@ -24,16 +25,12 @@ namespace Eu4ng.System.Item
 
         protected Dictionary<int, ItemDefinition> ItemDefinitionMap { get; private set; } = new Dictionary<int, ItemDefinition>();
 
-        public ItemDefinition GetItemDefinition(int id)
-        {
-            if (id < 0) return null;
-            if (ItemDefinitions.Count != 0 && ItemDefinitionMap.Count == 0) UpdateItemDefinitionMap();
-
-            return ItemDefinitionMap.GetValueOrDefault(id, null);
-        }
+        public ItemDefinition GetItemDefinition(int id) => ItemDefinitionMap.GetValueOrDefault(id, null);
 
         protected void UpdateItemDefinitionMap()
         {
+            ItemDefinitionMap.Clear();
+
             foreach (var itemDefinition in ItemDefinitions)
             {
                 if (itemDefinition == null) continue;
@@ -44,16 +41,7 @@ namespace Eu4ng.System.Item
 #if UNITY_EDITOR
         protected virtual void Update()
         {
-            var invalidItemDefinitions = new List<ItemDefinition>();
-            foreach (var itemDefinition in ItemDefinitions)
-            {
-                if (itemDefinition == null) invalidItemDefinitions.Add(itemDefinition);
-            }
-
-            foreach (var invalidItemDefinition in invalidItemDefinitions)
-            {
-                ItemDefinitions.Remove(invalidItemDefinition);
-            }
+            UpdateItemDefinitionMap();
 
             var dataTable = JsonConvert.DeserializeObject<Dictionary<int, T>>(JsonFile.text);
             if (dataTable == null) return;
@@ -66,19 +54,16 @@ namespace Eu4ng.System.Item
         void CreateItemDefinition(int id, T dataTableRow)
         {
             if (id < 0 || dataTableRow == null) return;
-            if (!Directory.Exists(FolderPath)) return;
-
-            var assetPath = FolderPath + "/ItemDefinition_" + id + ".asset";
 
             var itemDefinition = GetItemDefinition(id);
             if (itemDefinition == null)
             {
                 itemDefinition = CreateInstance<ItemDefinition>();
-                AssetDatabase.CreateAsset(itemDefinition, assetPath);
+                DirectoryManager.CreateAsset(itemDefinition, FolderPath, "ItemDefinition_" + id);
+                ItemDefinitions.Add(itemDefinition);
             }
             var itemConfigs = new List<ItemConfig>();
             itemDefinition.Initialize(id, dataTableRow.DisplayName, itemConfigs);
-            ItemDefinitions.Add(itemDefinition);
 
             OnItemDefinitionCreated(id, dataTableRow, itemDefinition, itemConfigs);
 

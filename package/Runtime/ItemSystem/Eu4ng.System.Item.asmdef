@@ -1,7 +1,9 @@
 {
     "name": "Eu4ng.System.Item",
     "rootNamespace": "Eu4ng.System.Item",
-    "references": [],
+    "references": [
+        "GUID:14b273445bc39c44cadaac491b57291a"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
