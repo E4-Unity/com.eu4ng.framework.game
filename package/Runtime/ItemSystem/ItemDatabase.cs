@@ -22,6 +22,25 @@ namespace Eu4ng.System.Item
         [field: SerializeField]
         protected List<ItemDefinition> ItemDefinitions { get; private set; } = new List<ItemDefinition>();
 
+        protected Dictionary<int, ItemDefinition> ItemDefinitionMap { get; private set; } = new Dictionary<int, ItemDefinition>();
+
+        public ItemDefinition GetItemDefinition(int id)
+        {
+            if (id < 0) return null;
+            if (ItemDefinitions.Count != 0 && ItemDefinitionMap.Count == 0) UpdateItemDefinitionMap();
+
+            return ItemDefinitionMap.GetValueOrDefault(id, null);
+        }
+
+        protected void UpdateItemDefinitionMap()
+        {
+            foreach (var itemDefinition in ItemDefinitions)
+            {
+                if (itemDefinition == null) continue;
+                ItemDefinitionMap.Add(itemDefinition.ID, itemDefinition);
+            }
+        }
+
 #if UNITY_EDITOR
         protected virtual void Update()
         {
@@ -35,11 +54,13 @@ namespace Eu4ng.System.Item
 
         void CreateItemDefinition(int id, T dataTableRow)
         {
+            if (id < 0 || dataTableRow == null) return;
             if (!Directory.Exists(FolderPath)) return;
 
             var assetPath = FolderPath + "/ItemDefinition_" + id + ".asset";
 
-            var itemDefinition = CreateInstance<ItemDefinition>();
+            var itemDefinition = GetItemDefinition(id);
+            if (itemDefinition == null) itemDefinition = CreateInstance<ItemDefinition>();
             var itemConfigs = new List<ItemConfig>();
             itemDefinition.Initialize(id, dataTableRow.DisplayName, itemConfigs);
             AssetDatabase.CreateAsset(itemDefinition, assetPath);
