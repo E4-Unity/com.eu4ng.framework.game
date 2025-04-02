@@ -71,10 +71,13 @@ namespace Eu4ng.System.Item
             var assetPath = FolderPath + "/ItemDefinition_" + id + ".asset";
 
             var itemDefinition = GetItemDefinition(id);
-            if (itemDefinition == null) itemDefinition = CreateInstance<ItemDefinition>();
+            if (itemDefinition == null)
+            {
+                itemDefinition = CreateInstance<ItemDefinition>();
+                AssetDatabase.CreateAsset(itemDefinition, assetPath);
+            }
             var itemConfigs = new List<ItemConfig>();
             itemDefinition.Initialize(id, dataTableRow.DisplayName, itemConfigs);
-            AssetDatabase.CreateAsset(itemDefinition, assetPath);
             ItemDefinitions.Add(itemDefinition);
 
             OnItemDefinitionCreated(id, dataTableRow, itemDefinition, itemConfigs);
