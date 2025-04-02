@@ -1,8 +1,7 @@
-using Eu4ng.Framework.Game;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Project.Platformer
+namespace Eu4ng.Framework.Game
 {
     [RequireComponent(typeof(PlayerInput))]
     public class PlayerController : Controller
