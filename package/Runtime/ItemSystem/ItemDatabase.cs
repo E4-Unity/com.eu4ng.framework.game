@@ -26,7 +26,7 @@ namespace Eu4ng.System.Item
 
         public ItemDefinition GetItemDefinition(int id) => ItemDefinitionMap.GetValueOrDefault(id, null);
 
-        protected void RefreshItemDefinitionMap()
+        public void RefreshItemDefinitionMap()
         {
             ItemDefinitionMap.Clear();
 
