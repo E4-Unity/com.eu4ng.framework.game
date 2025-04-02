@@ -388,13 +388,13 @@ MonoBehaviour:
   m_Owner: {fileID: 0}
   m_MaxSlotNum: 8
   m_StartItems:
-  - Definition: {fileID: 11400000, guid: 98402b67f6e2c4a418910ed9287fa2f1, type: 2}
+  - Definition: {fileID: 11400000, guid: 9e54183fa39a1e64f9306fdd257a0f29, type: 2}
     Quantity: 8
-  - Definition: {fileID: 11400000, guid: 380377cefbc3f254197b77bbd5ad5f67, type: 2}
+  - Definition: {fileID: 11400000, guid: 1bf5d66a5f072ee44b4820f77d289fc7, type: 2}
     Quantity: 13
-  - Definition: {fileID: 11400000, guid: 6031067c5214d6840b7e174858d16cf5, type: 2}
+  - Definition: {fileID: 11400000, guid: a17256392bfda1b428beef14c7aa680d, type: 2}
     Quantity: 18
-  - Definition: {fileID: 11400000, guid: 0cd7cae60962a104891f604a965c03ea, type: 2}
+  - Definition: {fileID: 11400000, guid: 8da840aa569eac64abd16126fddb5657, type: 2}
     Quantity: 23
   m_InventorySlots: []
 --- !u!1660057539 &9223372036854775807
