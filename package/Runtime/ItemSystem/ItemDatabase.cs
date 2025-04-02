@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.IO;
 using Eu4ng.Utilities.Editor;
 using Unity.Plastic.Newtonsoft.Json;
 using UnityEditor;
@@ -27,7 +26,7 @@ namespace Eu4ng.System.Item
 
         public ItemDefinition GetItemDefinition(int id) => ItemDefinitionMap.GetValueOrDefault(id, null);
 
-        protected void UpdateItemDefinitionMap()
+        protected void RefreshItemDefinitionMap()
         {
             ItemDefinitionMap.Clear();
 
@@ -39,10 +38,22 @@ namespace Eu4ng.System.Item
         }
 
 #if UNITY_EDITOR
+        protected virtual void HardUpdate()
+        {
+            Clear();
+
+            Update();
+        }
+
+        protected virtual void SoftUpdate()
+        {
+            RefreshItemDefinitionMap();
+
+            Update();
+        }
+
         protected virtual void Update()
         {
-            UpdateItemDefinitionMap();
-
             var dataTable = JsonConvert.DeserializeObject<Dictionary<int, T>>(JsonFile.text);
             if (dataTable == null) return;
             foreach (var pair in dataTable)
@@ -51,10 +62,19 @@ namespace Eu4ng.System.Item
             }
         }
 
-        void CreateItemDefinition(int id, T dataTableRow)
+        protected virtual void Clear()
         {
-            if (id < 0 || dataTableRow == null) return;
+            foreach (var itemDefinition in ItemDefinitions)
+            {
+                AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(itemDefinition));
+            }
 
+            ItemDefinitions.Clear();
+            ItemDefinitionMap.Clear();
+        }
+
+        public ItemDefinition GetOrCreateItemDefinition(int id)
+        {
             var itemDefinition = GetItemDefinition(id);
             if (itemDefinition == null)
             {
@@ -62,6 +82,15 @@ namespace Eu4ng.System.Item
                 DirectoryManager.CreateAsset(itemDefinition, FolderPath, "ItemDefinition_" + id);
                 ItemDefinitions.Add(itemDefinition);
             }
+
+            return itemDefinition;
+        }
+
+        void CreateItemDefinition(int id, T dataTableRow)
+        {
+            if (id < 0 || dataTableRow == null) return;
+
+            var itemDefinition = GetOrCreateItemDefinition(id);
             var itemConfigs = new List<ItemConfig>();
             itemDefinition.Initialize(id, dataTableRow.DisplayName, itemConfigs);
 
