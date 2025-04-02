@@ -391,14 +391,14 @@ MonoBehaviour:
   - ID: 1
     itemDefinition: {fileID: 0}
     Quantity: 8
-  - ID: 0
-    itemDefinition: {fileID: 11400000, guid: 1bf5d66a5f072ee44b4820f77d289fc7, type: 2}
+  - ID: 2
+    itemDefinition: {fileID: 0}
     Quantity: 13
   - ID: 3
     itemDefinition: {fileID: 0}
     Quantity: 18
-  - ID: 0
-    itemDefinition: {fileID: 11400000, guid: 8da840aa569eac64abd16126fddb5657, type: 2}
+  - ID: 4
+    itemDefinition: {fileID: 0}
     Quantity: 23
   m_InventorySlots: []
 --- !u!1660057539 &9223372036854775807

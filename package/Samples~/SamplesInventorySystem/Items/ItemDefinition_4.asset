@@ -15,8 +15,8 @@ MonoBehaviour:
   <ID>k__BackingField: 4
   <DisplayName>k__BackingField: Sample 04
   <ItemConfigs>k__BackingField:
-  - {fileID: 9085176878068729938}
---- !u!114 &9085176878068729938
+  - {fileID: 9083723885513071672}
+--- !u!114 &9083723885513071672
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
