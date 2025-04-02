@@ -48,7 +48,12 @@ namespace Project.Platformer
         {
             base.BindEvents();
 
-            if (MoveAction != null) MoveAction.performed += OnMove;
+            if (MoveAction != null)
+            {
+                MoveAction.performed += OnMove;
+                MoveAction.canceled += OnMove;
+            }
+
             if (JumpAction != null) JumpAction.performed += OnJump;
         }
 
@@ -74,8 +79,15 @@ namespace Project.Platformer
         {
             if (PlayerRigidbody == null) return;
 
-            var moveVector = context.ReadValue<Vector2>();
-            PlayerRigidbody.linearVelocity = new Vector2(moveVector.x * MoveSpeed, PlayerRigidbody.linearVelocity.y);
+            if (context.performed)
+            {
+                var moveVector = context.ReadValue<Vector2>();
+                PlayerRigidbody.linearVelocity = new Vector2(moveVector.x * MoveSpeed, PlayerRigidbody.linearVelocity.y);
+            }
+            else if (context.canceled)
+            {
+                PlayerRigidbody.linearVelocity = new Vector2(0, PlayerRigidbody.linearVelocity.y);
+            }
         }
 
         protected virtual void OnJump(InputAction.CallbackContext context)
