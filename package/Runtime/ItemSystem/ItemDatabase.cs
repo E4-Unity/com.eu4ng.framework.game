@@ -11,7 +11,7 @@ namespace Eu4ng.System.Item
         public string DisplayName;
     }
 
-    public abstract class ItemDatabase<T> : ScriptableObject where T : ItemDataTableRow
+    public abstract class ItemDatabase : ScriptableObject
     {
         [field: SerializeField]
         protected string FolderPath { get; private set; } = "Assets/Resources/ItemDefinitions";
@@ -36,7 +36,10 @@ namespace Eu4ng.System.Item
                 ItemDefinitionMap.Add(itemDefinition.ID, itemDefinition);
             }
         }
+    }
 
+    public abstract class ItemDatabase<T> : ItemDatabase where T : ItemDataTableRow
+    {
 #if UNITY_EDITOR
         protected virtual void HardUpdate()
         {
