@@ -12,11 +12,9 @@ namespace Project.Platformer
 
         [field: SerializeField, ReadOnly] public Rigidbody2D RigidbodyComponent { get; private set; }
         [field: SerializeField, ReadOnly] public CapsuleCollider2D CapsuleColliderComponent { get; private set; }
+        [field: SerializeField, ReadOnly] public CharacterMovement2D CharacterMovementComponent { get; private set; }
 
         /* Config */
-
-        [field: SerializeField] protected float MoveSpeed { get; private set; } = 7;
-        [field: SerializeField] protected float JumpForce { get; private set; } = 12;
 
         [field: SerializeField] protected string PlayerInputActionMapName { get; private set; } = "Player";
         [field: SerializeField] protected string MoveActionName { get; private set; } = "Move";
@@ -36,6 +34,7 @@ namespace Project.Platformer
 
             RigidbodyComponent = GetComponent<Rigidbody2D>();
             CapsuleColliderComponent = GetComponent<CapsuleCollider2D>();
+            CharacterMovementComponent = GetComponent<CharacterMovement2D>();
         }
 
         /* Pawn */
@@ -78,24 +77,13 @@ namespace Project.Platformer
 
         protected virtual void OnMove(InputAction.CallbackContext context)
         {
-            if (RigidbodyComponent == null) return;
-
-            if (context.performed)
-            {
-                var moveVector = context.ReadValue<Vector2>();
-                RigidbodyComponent.linearVelocity = new Vector2(moveVector.x * MoveSpeed, RigidbodyComponent.linearVelocity.y);
-            }
-            else if (context.canceled)
-            {
-                RigidbodyComponent.linearVelocity = new Vector2(0, RigidbodyComponent.linearVelocity.y);
-            }
+            var moveVector = context.ReadValue<Vector2>();
+            CharacterMovementComponent.Move(moveVector);
         }
 
         protected virtual void OnJump(InputAction.CallbackContext context)
         {
-            if (RigidbodyComponent == null) return;
-
-            RigidbodyComponent.linearVelocity = new Vector2(RigidbodyComponent.linearVelocity.x, JumpForce);
+            CharacterMovementComponent.Jump();
         }
     }
 }

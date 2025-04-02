@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7606995112447322536, guid: 027e3e241194307409f5172daf647561, type: 3}
       propertyPath: m_Name
-      value: PlayerCharacter
+      value: Character
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -59,6 +59,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7606995112447322536, guid: 027e3e241194307409f5172daf647561, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6450540883036133811}
+    - targetCorrespondingSourceObject: {fileID: 7606995112447322536, guid: 027e3e241194307409f5172daf647561, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1349421236973536325}
   m_SourcePrefab: {fileID: 100100000, guid: 027e3e241194307409f5172daf647561, type: 3}
 --- !u!1 &4871025571538751885 stripped
 GameObject:
@@ -79,3 +82,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsInitialized>k__BackingField: 0
   <OwningController>k__BackingField: {fileID: 0}
+  <PlayerInputComponent>k__BackingField: {fileID: 0}
+  <RigidbodyComponent>k__BackingField: {fileID: 0}
+  <CapsuleColliderComponent>k__BackingField: {fileID: 0}
+  <MoveSpeed>k__BackingField: 7
+  <JumpForce>k__BackingField: 12
+  <PlayerInputActionMapName>k__BackingField: Player
+  <MoveActionName>k__BackingField: Move
+  <JumpActionName>k__BackingField: Jump
+--- !u!114 &-1349421236973536325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4871025571538751885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 918e073870854f248b02daa83f96a4d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsInitialized>k__BackingField: 0
+  m_Owner: {fileID: 0}
+  <CapsuleColliderComponent>k__BackingField: {fileID: 0}
+  <GroundCheckDistance>k__BackingField: 0.4
+  <GroundLayer>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 1
+  <IsGrounded>k__BackingField: 0
