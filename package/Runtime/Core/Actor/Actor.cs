@@ -6,9 +6,24 @@ namespace Eu4ng.Framework.Game
     {
         /* MonoBehaviour */
 
+        protected override void Awake()
+        {
+            base.Awake();
+
+            AssignReferences();
+            BindEvents();
+        }
+
         protected override void Start()
         {
             InitializeComponent();
+        }
+
+        protected override void OnDestroy()
+        {
+            UnBindEvents();
+            
+            base.OnDestroy();
         }
 
         /* ComponentBase */
@@ -19,6 +34,10 @@ namespace Eu4ng.Framework.Game
         }
 
         /* Actor */
+
+        protected virtual void AssignReferences() {}
+        protected virtual void BindEvents() {}
+        protected virtual void UnBindEvents() {}
 
         protected virtual void InitializeActorComponents()
         {
