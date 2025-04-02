@@ -42,10 +42,11 @@ namespace Eu4ng.Framework.Game
         public void UnPossess()
         {
             if (OwningPawn == null) return;
-            OwningPawn.UnPossessed();
-            OwningPawn = null;
 
             OnUnPossess();
+            OwningPawn.UnPossessed();
+
+            OwningPawn = null;
         }
 
         protected virtual void OnPossess() {}
