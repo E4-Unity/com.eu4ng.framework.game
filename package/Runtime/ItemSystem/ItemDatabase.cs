@@ -44,6 +44,17 @@ namespace Eu4ng.System.Item
 #if UNITY_EDITOR
         protected virtual void Update()
         {
+            var invalidItemDefinitions = new List<ItemDefinition>();
+            foreach (var itemDefinition in ItemDefinitions)
+            {
+                if (itemDefinition == null) invalidItemDefinitions.Add(itemDefinition);
+            }
+
+            foreach (var invalidItemDefinition in invalidItemDefinitions)
+            {
+                ItemDefinitions.Remove(invalidItemDefinition);
+            }
+
             var dataTable = JsonConvert.DeserializeObject<Dictionary<int, T>>(JsonFile.text);
             if (dataTable == null) return;
             foreach (var pair in dataTable)
