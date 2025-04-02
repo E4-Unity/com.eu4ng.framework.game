@@ -2,7 +2,8 @@
     "name": "Eu4ng.System.Item",
     "rootNamespace": "Eu4ng.System.Item",
     "references": [
-        "GUID:14b273445bc39c44cadaac491b57291a"
+        "GUID:14b273445bc39c44cadaac491b57291a",
+        "GUID:c2becb15332ef2145b3d7c2149f8e3cb"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
