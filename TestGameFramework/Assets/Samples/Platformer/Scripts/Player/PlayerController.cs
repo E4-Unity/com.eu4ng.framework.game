@@ -13,15 +13,24 @@ namespace Project.Platformer
 
         /* Config */
 
+        // Input
+
         [field: SerializeField] protected string PlayerInputActionMapName { get; private set; } = "Player";
         [field: SerializeField] protected string MoveActionName { get; private set; } = "Move";
         [field: SerializeField] protected string JumpActionName { get; private set; } = "Jump";
+
+        // Locomotion
+
+        [field: SerializeField] protected float MoveSpeed { get; private set; } = 7;
+        [field: SerializeField] protected float JumpForce { get; private set; } = 12;
 
         /* State */
 
         protected InputActionMap PlayerInputActionMap { get; private set; }
         protected InputAction MoveAction { get; private set; }
         protected InputAction JumpAction { get; private set; }
+
+        protected Rigidbody2D PlayerRigidbody { get; private set; }
 
         /* Actor */
 
@@ -33,6 +42,47 @@ namespace Project.Platformer
             PlayerInputActionMap = PlayerInputComponent != null ? PlayerInputComponent.actions.FindActionMap(PlayerInputActionMapName) : null;
             MoveAction = PlayerInputActionMap?.FindAction(MoveActionName);
             JumpAction = PlayerInputActionMap?.FindAction(JumpActionName);
+        }
+
+        protected override void BindEvents()
+        {
+            base.BindEvents();
+
+            if (MoveAction != null) MoveAction.performed += OnMove;
+            if (JumpAction != null) JumpAction.performed += OnJump;
+        }
+
+        /* Controller */
+
+        protected override void OnPossess(Pawn pawn)
+        {
+            base.OnPossess(pawn);
+
+            PlayerRigidbody = pawn.GetComponent<Rigidbody2D>();
+        }
+
+        protected override void OnUnPossess()
+        {
+            PlayerRigidbody = null;
+
+            base.OnUnPossess();
+        }
+
+        /* PlayerController */
+
+        protected virtual void OnMove(InputAction.CallbackContext context)
+        {
+            if (PlayerRigidbody == null) return;
+
+            var moveVector = context.ReadValue<Vector2>();
+            PlayerRigidbody.linearVelocity = new Vector2(moveVector.x * MoveSpeed, PlayerRigidbody.linearVelocity.y);
+        }
+
+        protected virtual void OnJump(InputAction.CallbackContext context)
+        {
+            if (PlayerRigidbody == null) return;
+
+            PlayerRigidbody.linearVelocity = new Vector2(PlayerRigidbody.linearVelocity.x, JumpForce);
         }
     }
 }
