@@ -15,7 +15,7 @@ namespace Eu4ng.System.Item
         public string DisplayName { get; protected set; }
 
         [field: SerializeField]
-        protected List<ItemConfig> ItemConfigs { get; set; }
+        public List<ItemConfig> ItemConfigs { get; set; }
 
         /* ItemDefinition */
 

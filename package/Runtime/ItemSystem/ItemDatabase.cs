@@ -94,6 +94,16 @@ namespace Eu4ng.System.Item
             if (id < 0 || dataTableRow == null) return;
 
             var itemDefinition = GetOrCreateItemDefinition(id);
+
+            if (itemDefinition.ItemConfigs is { Count: > 0 })
+            {
+                foreach (var itemConfig in itemDefinition.ItemConfigs)
+                {
+                    AssetDatabase.RemoveObjectFromAsset(itemConfig);
+                }
+                itemDefinition.ItemConfigs.Clear();
+            }
+
             var itemConfigs = new List<ItemConfig>();
             itemDefinition.Initialize(id, dataTableRow.DisplayName, itemConfigs);
 
