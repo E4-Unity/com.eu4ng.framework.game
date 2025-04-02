@@ -43,12 +43,12 @@ namespace Eu4ng.Framework.Game
 
         public void SetPlayerInputComponent(PlayerInput playerInputComponent)
         {
-            if (PlayerInputComponent != null) UnBindInputComponent(PlayerInputComponent);
+            if (PlayerInputComponent != null) UnBindInputComponent();
             PlayerInputComponent = playerInputComponent;
-            if (PlayerInputComponent != null) BindInputComponent(playerInputComponent);
+            if (PlayerInputComponent != null) BindInputComponent();
         }
 
-        protected virtual void BindInputComponent(PlayerInput playerInputComponent) {}
-        protected virtual void UnBindInputComponent(PlayerInput playerInputComponent) {}
+        protected virtual void BindInputComponent() {}
+        protected virtual void UnBindInputComponent() {}
     }
 }
