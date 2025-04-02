@@ -7,8 +7,19 @@ namespace Eu4ng.System.Item
     public struct ItemData
     {
         public int ID;
-        
-        public ItemDefinition Definition;
+
+        [SerializeField] ItemDefinition itemDefinition;
+
+        public ItemDefinition Definition
+        {
+            get
+            {
+                if (itemDefinition == null) itemDefinition = ItemManager.Instance.GetItemDefinition(ID);
+                return itemDefinition;
+            }
+
+            set => itemDefinition = value;
+        }
 
         [Min(0)]
         public int Quantity;
