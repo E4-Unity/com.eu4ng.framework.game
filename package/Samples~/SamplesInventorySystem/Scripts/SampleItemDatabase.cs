@@ -15,11 +15,11 @@ namespace Eu4ng.System.Inventory.Sample
     public class SampleItemDatabase : ItemDatabase<SampleItemDataTableRow>
     {
 #if UNITY_EDITOR
-        [ContextMenu("Update")]
-        protected override void Update()
-        {
-            base.Update();
-        }
+        [ContextMenu("HardUpdate")]
+        protected override void HardUpdate() => base.HardUpdate();
+
+        [ContextMenu("SoftUpdate")]
+        protected override void SoftUpdate() => base.SoftUpdate();
 
         protected override void OnItemDefinitionCreated(int id, SampleItemDataTableRow dataTableRow, ItemDefinition itemDefinition,
             List<ItemConfig> itemConfigs)
