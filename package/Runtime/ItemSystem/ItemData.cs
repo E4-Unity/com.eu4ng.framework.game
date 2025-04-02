@@ -6,6 +6,8 @@ namespace Eu4ng.System.Item
     [Serializable]
     public struct ItemData
     {
+        public int ID;
+        
         public ItemDefinition Definition;
 
         [Min(0)]
