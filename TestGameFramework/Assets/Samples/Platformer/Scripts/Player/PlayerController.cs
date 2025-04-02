@@ -59,15 +59,17 @@ namespace Project.Platformer
 
         /* Controller */
 
-        protected override void OnPossess(Pawn pawn)
+        protected override void OnPossess()
         {
-            base.OnPossess(pawn);
+            base.OnPossess();
 
-            PlayerRigidbody = pawn.GetComponent<Rigidbody2D>();
+            PlayerRigidbody = OwningPawn.GetComponent<Rigidbody2D>();
+            OwningPawn.SetPlayerInputComponent(PlayerInputComponent);
         }
 
         protected override void OnUnPossess()
         {
+            OwningPawn.SetPlayerInputComponent(null);
             PlayerRigidbody = null;
 
             base.OnUnPossess();
