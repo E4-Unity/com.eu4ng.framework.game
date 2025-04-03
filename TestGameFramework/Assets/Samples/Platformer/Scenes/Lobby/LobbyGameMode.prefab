@@ -55,7 +55,7 @@ PrefabInstance:
     - target: {fileID: 6453204739632425786, guid: 6f39125465d447547be9f0ce95c8f6e9, type: 3}
       propertyPath: m_PlayerControllerPrefab
       value: 
-      objectReference: {fileID: -6912653026870541735, guid: 2e370d19ad6909544a0d6f269061375d, type: 3}
+      objectReference: {fileID: 7712502333083061348, guid: e1561dbbecf8d0e4d8a73e380763f7e8, type: 3}
     - target: {fileID: 8699196817821504586, guid: 6f39125465d447547be9f0ce95c8f6e9, type: 3}
       propertyPath: m_Name
       value: LobbyGameMode

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5511779491614304924}
   - component: {fileID: -2888795536158822622}
   - component: {fileID: -6912653026870541735}
+  - component: {fileID: -5653519202036253070}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -78,8 +79,18 @@ MonoBehaviour:
   <IsInitialized>k__BackingField: 0
   <OwningPawn>k__BackingField: {fileID: 0}
   <PlayerInputComponent>k__BackingField: {fileID: 0}
-  <PlayerInputActionMapName>k__BackingField: Player
-  <MoveActionName>k__BackingField: Move
-  <JumpActionName>k__BackingField: Jump
-  <MoveSpeed>k__BackingField: 7
-  <JumpForce>k__BackingField: 12
+--- !u!114 &-5653519202036253070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4171896819845944240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a56bab823d29b34ea2614fe6800d2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerInputComponent: {fileID: 0}
+  m_InputActionMapName: Player
+  m_DefaultInputConfigs: []
