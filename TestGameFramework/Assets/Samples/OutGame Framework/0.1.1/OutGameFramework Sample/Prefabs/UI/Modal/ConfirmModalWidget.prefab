@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConfirmModalWidget
       objectReference: {fileID: 0}
+    - target: {fileID: 2904458153302635774, guid: c120a5122b84b8b4e8238a294058e29a, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4354068637851505769, guid: c120a5122b84b8b4e8238a294058e29a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -91,6 +95,14 @@ PrefabInstance:
     - target: {fileID: 4354068637851505769, guid: c120a5122b84b8b4e8238a294058e29a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386479389919506285, guid: c120a5122b84b8b4e8238a294058e29a, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517536006794948323, guid: c120a5122b84b8b4e8238a294058e29a, type: 3}
+      propertyPath: m_fontAsset
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
