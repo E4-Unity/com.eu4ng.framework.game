@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155d399953c215a429faddc98a0bfb89, type: 3}
-  m_Name: SingletonManagerSettings
+  m_Script: {fileID: 11500000, guid: d57f60def76ad16479a9a5851ae12997, type: 3}
+  m_Name: InputConfig_EscapeMenu
   m_EditorClassIdentifier: 
-  m_GlobalPrefabs: []
-  m_ScenePrefabsConfig: {fileID: 0}
+  m_DataList:
+  - InputActionName: Jump
+    WidgetPrefab: {fileID: 7650946560657818344, guid: 072bd89010e372941a2fe4727493152e, type: 3}
