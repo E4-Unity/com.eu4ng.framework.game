@@ -33,9 +33,9 @@ namespace Eu4ng.System.Inventory
         {
             if (item.IsNotValid) return;
 
-            var inventoryItemConfig = item.Definition.GetItemConfigInterface<IInventoryItemConfig>();
-            if (inventoryItemConfig == null) return;
-            int maxStack = inventoryItemConfig.MaxStack;
+            var inventoryItemInterface = item.GetItemInterface<IInventoryItem>();
+            if (inventoryItemInterface == null) return;
+            int maxStack = inventoryItemInterface.MaxStack;
 
             for (int index = 0; index < MaxSlotNum; ++index)
             {

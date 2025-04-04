@@ -26,7 +26,7 @@ namespace Eu4ng.System.Inventory.Sample
         {
             var itemConfig = CreateInstance<ItemConfig_Inventory>();
             itemConfig.name = nameof(ItemConfig_Inventory) + "_" + id;
-            InventoryItemConfigData data = new InventoryItemConfigData
+            InventoryItemData data = new InventoryItemData
             {
                 MaxStack = dataTableRow.MaxStack
             };
