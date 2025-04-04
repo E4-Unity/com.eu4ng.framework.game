@@ -4,25 +4,23 @@ using UnityEngine;
 
 namespace Eu4ng.System.Inventory.Sample
 {
-    public interface IInventoryItemConfig : Eu4ng.System.Inventory.IInventoryItemConfig
+    public interface IInventoryItem : Eu4ng.System.Inventory.IInventoryItem
     {
         public int TestValue { get; }
     }
 
     [Serializable]
-    public struct InventoryItemConfigData : IInventoryItemConfig
+    public struct InventoryItemData : IInventoryItem
     {
-        [field: SerializeField, Min(0)]
-        public int MaxStack { get; set; }
+        [field: SerializeField, Min(0)] public int MaxStack { get; set; }
 
-        [field: SerializeField]
-        public int TestValue { get; set; }
+        [field: SerializeField] public int TestValue { get; set; }
     }
 
 #if USE_E4_INVENTORY_SYSTEM
     [CreateAssetMenu(fileName = "ItemConfig_Inventory", menuName = "Scriptable Objects/ItemConfig/InventorySample")]
 #endif
-    public class ItemConfig_Inventory : ItemConfig<InventoryItemConfigData>
+    public class ItemConfig_Inventory : ItemConfig<InventoryItemData>
     {
 
     }

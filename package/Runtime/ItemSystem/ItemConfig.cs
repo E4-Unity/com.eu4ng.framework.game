@@ -4,10 +4,10 @@ namespace Eu4ng.System.Item
 {
     public abstract class ItemConfig : ScriptableObject
     {
-        public abstract T GetItemConfigInterface<T>() where T : class, IItemConfig;
+        public abstract T GetItemInterface<T>() where T : class;
     }
 
-    public abstract class ItemConfig<TData> : ItemConfig where TData : struct, IItemConfig
+    public abstract class ItemConfig<TData> : ItemConfig where TData : struct
     {
         /* Properties */
 
@@ -17,7 +17,6 @@ namespace Eu4ng.System.Item
         /* ItemConfig<TData> */
 
         public void Initialize(TData data) => Data = data;
-
-        public override T GetItemConfigInterface<T>() => Data as T;
+        public override T GetItemInterface<T>() => Data as T;
     }
 }

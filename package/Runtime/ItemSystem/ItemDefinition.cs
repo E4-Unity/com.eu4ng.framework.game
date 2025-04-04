@@ -8,14 +8,9 @@ namespace Eu4ng.System.Item
     {
         /* Properties */
 
-        [field: SerializeField]
-        public int ID { get; protected set; }
-
-        [field: SerializeField]
-        public string DisplayName { get; protected set; }
-
-        [field: SerializeField]
-        public List<ItemConfig> ItemConfigs { get; set; }
+        [field: SerializeField] public int ID { get; private set; }
+        [field: SerializeField] public string DisplayName { get; private set; }
+        [field: SerializeField] public List<ItemConfig> ItemConfigs { get; private set; } = new List<ItemConfig>();
 
         /* ItemDefinition */
 
@@ -26,14 +21,14 @@ namespace Eu4ng.System.Item
             ItemConfigs = itemConfigs;
         }
 
-        public T GetItemConfigInterface<T>() where T : class, IItemConfig
+        public T GetItemInterface<T>() where T : class
         {
             foreach (var itemConfig in ItemConfigs)
             {
                 if (itemConfig == null) continue;
 
-                var itemConfigInterface = itemConfig.GetItemConfigInterface<T>();
-                if (itemConfigInterface != null) return itemConfigInterface;
+                var itemInterface = itemConfig.GetItemInterface<T>();
+                if (itemInterface is not null) return itemInterface;
             }
 
             return null;

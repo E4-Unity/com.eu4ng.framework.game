@@ -26,5 +26,7 @@ namespace Eu4ng.System.Item
 
         public bool IsValid => Definition != null && Quantity > 0;
         public bool IsNotValid => !IsValid;
+
+        public T GetItemInterface<T>() where T : class => Definition?.GetItemInterface<T>();
     }
 }
