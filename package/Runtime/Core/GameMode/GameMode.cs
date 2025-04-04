@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Eu4ng.Framework.OutGame;
 using Eu4ng.Utilities;
 using UnityEngine;
 
@@ -13,6 +15,9 @@ namespace Eu4ng.Framework.Game
         [field: SerializeField, ReadOnly] public Pawn Player { get; protected set; }
         [field: SerializeField, ReadOnly] public Controller PlayerController { get; protected set; }
 
+        [field: Header("UI")]
+        [field: SerializeField] protected List<RectTransform> DefaultWidgetPrefabs { get; private set; }
+
         /* MonoBehaviour */
 
         protected override void Awake()
@@ -21,6 +26,13 @@ namespace Eu4ng.Framework.Game
 
             SpawnPlayerController();
             SpawnPlayer();
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+
+            ShowDefaultWidgets();
         }
 
         /* GameMode */
@@ -61,6 +73,16 @@ namespace Eu4ng.Framework.Game
 
             // 플레이어가 존재하는 경우 컨트롤러 빙의
             if (Player is not null) PlayerController.Possess(Player);
+        }
+
+        protected virtual void ShowDefaultWidgets()
+        {
+            foreach (var widgetPrefab in DefaultWidgetPrefabs)
+            {
+                if (widgetPrefab == null) continue;
+
+                UIManager.Instance.ShowWidget(widgetPrefab);
+            }
         }
     }
 }
