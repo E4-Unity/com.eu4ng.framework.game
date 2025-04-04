@@ -23,23 +23,33 @@ namespace Eu4ng.Framework.Game
 
         public void Possess(Pawn pawn)
         {
-            if (pawn == null) return;
-            OwningPawn = pawn;
-            OwningPawn.PossessedBy(this);
+            // Old Pawn
+            if (OwningPawn != null)
+            {
+                UnPossess();
+            }
 
-            OnPossess(pawn);
+            OwningPawn = pawn;
+
+            // New Pawn
+            if (OwningPawn != null)
+            {
+                OwningPawn.PossessedBy(this);
+                OnPossess();
+            }
         }
 
         public void UnPossess()
         {
             if (OwningPawn == null) return;
-            OwningPawn.UnPossessed();
-            OwningPawn = null;
 
             OnUnPossess();
+            OwningPawn.UnPossessed();
+
+            OwningPawn = null;
         }
 
-        protected virtual void OnPossess(Pawn pawn) {}
+        protected virtual void OnPossess() {}
         protected virtual void OnUnPossess() {}
     }
 }

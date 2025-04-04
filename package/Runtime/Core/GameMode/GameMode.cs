@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Eu4ng.Framework.OutGame;
 using Eu4ng.Utilities;
 using UnityEngine;
 
@@ -5,44 +7,16 @@ namespace Eu4ng.Framework.Game
 {
     public class GameMode : Actor
     {
-        /* Fields */
-
-        [SerializeField] Controller m_PlayerControllerPrefab;
-        [SerializeField] Pawn m_PlayerPrefab;
-
-        [SerializeField, ReadOnly] Pawn m_Player;
-        [SerializeField, ReadOnly] Controller m_PlayerController;
-
         /* Properties */
 
-        Controller PlayerControllerPrefab => m_PlayerControllerPrefab;
-        Pawn PlayerPrefab => m_PlayerPrefab;
+        [field: Header("Player")]
+        [field: SerializeField] protected Controller PlayerControllerPrefab { get; private set; }
+        [field: SerializeField] protected Pawn PlayerPrefab { get; private set; }
+        [field: SerializeField, ReadOnly] public Pawn Player { get; protected set; }
+        [field: SerializeField, ReadOnly] public Controller PlayerController { get; protected set; }
 
-        public Pawn Player
-        {
-            get => m_Player;
-            protected set
-            {
-                if (m_Player == value) return;
-
-                if (m_Player != null) Destroy(m_Player.gameObject);
-
-                m_Player = value;
-            }
-        }
-
-        public Controller PlayerController
-        {
-            get => m_PlayerController;
-            protected set
-            {
-                if (m_PlayerController == value) return;
-
-                if (m_PlayerController != null) Destroy(m_PlayerController.gameObject);
-
-                m_PlayerController = value;
-            }
-        }
+        [field: Header("UI")]
+        [field: SerializeField] protected List<RectTransform> DefaultWidgetPrefabs { get; private set; }
 
         /* MonoBehaviour */
 
@@ -54,15 +28,22 @@ namespace Eu4ng.Framework.Game
             SpawnPlayer();
         }
 
+        protected override void Start()
+        {
+            base.Start();
+
+            ShowDefaultWidgets();
+        }
+
         /* GameMode */
 
-        public void SpawnPlayer()
+        protected virtual void SpawnPlayer()
         {
             // 유효성 검사
             if (PlayerPrefab == null) return;
 
-            // 플레이어 컨트롤러 빙의 해제
-            PlayerController.UnPossess();
+            // 기존 플레이어 파괴
+            if (Player is not null) Destroy(Player.gameObject);
 
             // 씬 오브젝트들 중 PlayerStart 컴포넌트를 지닌 오브젝트 목록 가져오기
             var playerStarts = FindObjectsByType<PlayerStart>(FindObjectsSortMode.None);
@@ -72,19 +53,36 @@ namespace Eu4ng.Framework.Game
             int playerStartIndex = playerStarts.Length == 1 ? 0 : Random.Range(0, playerStarts.Length);
             Vector3 playerSpawnPosition = playerStarts[playerStartIndex].transform.position;
 
-            // 플레이어 스폰
+            // 새로운 플레이어 스폰
             Player = Instantiate(PlayerPrefab, playerSpawnPosition, Quaternion.identity);
 
             // 플레이어 컨트롤러 빙의
             PlayerController.Possess(Player);
         }
 
-        protected void SpawnPlayerController()
+        protected virtual void SpawnPlayerController()
         {
             // 유효성 검사
             if (PlayerControllerPrefab == null) return;
 
+            // 기존 플레이어 컨트롤러 파괴
+            if (PlayerController is not null) Destroy(PlayerController.gameObject);
+
+            // 새로운 플레이어 컨트롤러 스폰
             PlayerController = Instantiate(PlayerControllerPrefab);
+
+            // 플레이어가 존재하는 경우 컨트롤러 빙의
+            if (Player is not null) PlayerController.Possess(Player);
+        }
+
+        protected virtual void ShowDefaultWidgets()
+        {
+            foreach (var widgetPrefab in DefaultWidgetPrefabs)
+            {
+                if (widgetPrefab == null) continue;
+
+                UIManager.Instance.ShowWidget(widgetPrefab);
+            }
         }
     }
 }

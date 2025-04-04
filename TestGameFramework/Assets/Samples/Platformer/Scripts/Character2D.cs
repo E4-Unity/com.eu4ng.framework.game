@@ -1,0 +1,89 @@
+using Eu4ng.Framework.Game;
+using Eu4ng.Utilities;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+namespace Project.Platformer
+{
+    [RequireComponent(typeof(Rigidbody2D), typeof(CapsuleCollider2D))]
+    public class Character2D : Pawn
+    {
+        /* Components */
+
+        [field: SerializeField, ReadOnly] public Rigidbody2D RigidbodyComponent { get; private set; }
+        [field: SerializeField, ReadOnly] public CapsuleCollider2D CapsuleColliderComponent { get; private set; }
+        [field: SerializeField, ReadOnly] public CharacterMovement2D CharacterMovementComponent { get; private set; }
+
+        /* Config */
+
+        [field: SerializeField] protected string PlayerInputActionMapName { get; private set; } = "Player";
+        [field: SerializeField] protected string MoveActionName { get; private set; } = "Move";
+        [field: SerializeField] protected string JumpActionName { get; private set; } = "Jump";
+
+        /* State */
+
+        protected InputActionMap PlayerInputActionMap { get; private set; }
+        protected InputAction MoveAction { get; private set; }
+        protected InputAction JumpAction { get; private set; }
+
+        /* Actor */
+
+        protected override void AssignReferences()
+        {
+            base.AssignReferences();
+
+            RigidbodyComponent = GetComponent<Rigidbody2D>();
+            CapsuleColliderComponent = GetComponent<CapsuleCollider2D>();
+            CharacterMovementComponent = GetComponent<CharacterMovement2D>();
+        }
+
+        /* Pawn */
+
+        protected override void BindInputComponent()
+        {
+            base.BindInputComponent();
+
+            PlayerInputActionMap = PlayerInputComponent.actions.FindActionMap(PlayerInputActionMapName);
+            MoveAction = PlayerInputActionMap?.FindAction(MoveActionName);
+            JumpAction = PlayerInputActionMap?.FindAction(JumpActionName);
+
+            if (MoveAction != null)
+            {
+                MoveAction.performed += OnMove;
+                MoveAction.canceled += OnMove;
+            }
+
+            if (JumpAction != null) JumpAction.performed += OnJump;
+        }
+
+        protected override void UnBindInputComponent()
+        {
+            if (MoveAction != null)
+            {
+                MoveAction.performed -= OnMove;
+                MoveAction.canceled -= OnMove;
+            }
+
+            if (JumpAction != null) JumpAction.performed -= OnJump;
+
+            PlayerInputActionMap = null;
+            MoveAction = null;
+            JumpAction = null;
+
+            base.UnBindInputComponent();
+        }
+
+        /* Character2D */
+
+        protected virtual void OnMove(InputAction.CallbackContext context)
+        {
+            var moveVector = context.ReadValue<Vector2>();
+            CharacterMovementComponent.Move(moveVector);
+        }
+
+        protected virtual void OnJump(InputAction.CallbackContext context)
+        {
+            CharacterMovementComponent.Jump();
+        }
+    }
+}

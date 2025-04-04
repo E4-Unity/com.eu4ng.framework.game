@@ -1,5 +1,6 @@
 using Eu4ng.Utilities;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Eu4ng.Framework.Game
 {
@@ -7,8 +8,8 @@ namespace Eu4ng.Framework.Game
     {
         /* Properties */
 
-        [field: SerializeField, ReadOnly]
-        public Controller OwningController { get; private set; }
+        [field: SerializeField, ReadOnly] public Controller OwningController { get; private set; }
+        [field: SerializeField, ReadOnly] public PlayerInput PlayerInputComponent { get; private set; }
 
         /* MonoBehaviour */
 
@@ -39,5 +40,15 @@ namespace Eu4ng.Framework.Game
 
         protected virtual void OnPossessedBy(Controller controller) {}
         protected virtual void OnUnPossessedBy() {}
+
+        public void SetPlayerInputComponent(PlayerInput playerInputComponent)
+        {
+            if (PlayerInputComponent != null) UnBindInputComponent();
+            PlayerInputComponent = playerInputComponent;
+            if (PlayerInputComponent != null) BindInputComponent();
+        }
+
+        protected virtual void BindInputComponent() {}
+        protected virtual void UnBindInputComponent() {}
     }
 }
