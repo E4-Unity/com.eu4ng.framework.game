@@ -11,14 +11,26 @@ https://github.com/E4-Unity/com.eu4ng.framework.game.git?path=/package#v0.1.0
 
 ## 패키지 종속성
 
-[`E4 Utilities`](https://github.com/E4-Unity/com.eu4ng.utilities)
+[`E4 Utilities v0.1.1`](https://github.com/E4-Unity/com.eu4ng.utilities)
 
 ```
 https://github.com/E4-Unity/com.eu4ng.utilities.git?path=/package#v0.1.1
 ```
 
-[`Singleton Manager`](https://github.com/E4-Unity/com.eu4ng.manager.singleton)
+[`Singleton Manager v0.2.0`](https://github.com/E4-Unity/com.eu4ng.manager.singleton)
 
 ```
-https://github.com/E4-Unity/com.eu4ng.manager.singleton.git?path=/package#v0.1.0
+https://github.com/E4-Unity/com.eu4ng.manager.singleton.git?path=/package#v0.2.0
+```
+
+[`Input Manager v0.1.0`](https://github.com/E4-Unity/com.eu4ng.manager.input)
+
+```
+https://github.com/E4-Unity/com.eu4ng.manager.input.git?path=/package#v0.1.0
+```
+
+[`OutGame Framework v0.2.0`](https://github.com/E4-Unity/com.eu4ng.framework.outgame)
+
+```
+https://github.com/E4-Unity/com.eu4ng.framework.outgame.git?path=/package#v0.2.0
 ```
